@@ -15,7 +15,8 @@ Role Variables
 |Переменная|Значение по умолчанию|Назначение|
 |---|---|---|
 |vector_version|0.24.0|Определяет устанавливаемую версию|
-|clickhouse_host_name|clickhouse-01|В inventory.yml имя хоста ClickHouse|
+|clickhouse_user|logger|Пользователь для подключения к ClickHouse|
+|clickhouse_password|logger|Пароль пользователя ClickHouse|
 
 
 Dependencies
@@ -24,6 +25,7 @@ Dependencies
 Эта роль - результат выполнения домашнего задания. Для использования в продуктиве - не предназначена ;-).
 
 Чтобы её использовать, необходимо:
+
 1. Добавить в файл `requirements.yml` текст:
 ``` yaml
 - name: vector-role
@@ -51,7 +53,7 @@ Example Playbook
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------

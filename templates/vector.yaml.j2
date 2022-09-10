@@ -16,8 +16,8 @@ sinks:
     database: logs
     table: somelog
     auth:
-      user: logger
-      password: logger
+      user: {{ clickhouse_user }}
+      password: {{ clickhouse_password }}
       strategy: basic
     skip_unknown_fields: true
     compression: gzip

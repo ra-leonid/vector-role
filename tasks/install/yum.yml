@@ -1,6 +1,37 @@
 ---
-- name: Install vector rpm
+- name: Create dir vector
   become: true
-  ansible.builtin.yum:
-    name: vector.rpm
-  notify: Start vector service
+  ansible.builtin.file:
+    path: ./vector
+    state: directory
+
+- name: Unarchive Vector distib
+  become: true
+  shell: tar -C ./vector --strip-components=2 -xzf ./{{ arhive_file }}
+
+- name: Copy Vector in /usr/bin
+  become: true
+  ansible.builtin.copy:
+    remote_src: true
+    src: "./vector/bin/vector"
+    dest: "/usr/bin"
+    mode: 0755
+- name: Copy Vector in Systemd
+  become: true
+  ansible.builtin.copy:
+    remote_src: true
+    src: "./vector/etc/systemd/vector.service"
+    dest: "/etc/systemd/system"
+    mode: 0755
+- name: Prepare data location
+  become: true
+  ansible.builtin.file:
+    path: /var/lib/vector
+    state: directory
+    mode: 0755
+- name: Prepare config location
+  become: true
+  ansible.builtin.file:
+    path: /etc/vector
+    state: directory
+    mode: 0755

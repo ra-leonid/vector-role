@@ -1,2 +1,3 @@
 ---
+arhive_file: vector-{{ vector_version }}-x86_64-unknown-linux-musl.tar.gz
 clickhouse_host_ip: hostvars['{{ clickhouse_host_name }}'].ansible_host

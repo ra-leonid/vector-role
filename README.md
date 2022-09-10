@@ -2,9 +2,6 @@ Vector-role
 =========
 
 Устанавливает и настраивает [Vector](https://vector.dev/).
-Поддерживаемые системы:
-* CentOS 7
-* Ubuntu
 
 Requirements
 ------------
@@ -12,7 +9,6 @@ Requirements
 Поддерживаемые системы:
 * CentOS 7
 * Ubuntu
-
 
 Role Variables
 --------------
@@ -25,7 +21,21 @@ Role Variables
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Эта роль - результат выполнения домашнего задания. Для использования в продуктиве - не предназначена ;-).
+
+Чтобы её использовать, необходимо:
+1. Добавить в файл `requirements.yml` текст:
+``` yaml
+- name: vector-role
+  src: git@github.com:ra-leonid/vector-role.git
+  scm: git
+  version: <last tag>
+```
+`<last tag>` заменить на значение последнего тэга.
+2. Выполнить команду копирования роли:
+``` bash
+ansible-galaxy install -r requirements.yml -p roles -f
+```
 
 Example Playbook
 ----------------
@@ -45,4 +55,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Расторгуев Леонид.

@@ -1,0 +1,2 @@
+---
+clickhouse_host_ip: hostvars['{{ clickhouse_host_name }}'].ansible_host

@@ -1,2 +1,3 @@
 ---
-vector_version: 0.23.3
+vector_version: 0.24.0
+clickhouse_host_name: clickhouse-01

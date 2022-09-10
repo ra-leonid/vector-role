@@ -1,15 +1,15 @@
 ---
 - name: Add download tasks
-  - include_tasks: "download/{{ ansible_pkg_mgr }}.yml"
+  include_tasks: download/{{ ansible_pkg_mgr }}.yml
 
 - name: Add install tasks
-  - include_tasks: "install/{{ ansible_pkg_mgr }}.yml"
+  include_tasks: install/{{ ansible_pkg_mgr }}.yml
 
 - name: Configure vector service
   become: true
   ansible.builtin.template:
     src: vector.yaml.j2
-    dest: "/etc/vector/vector.yaml"
+    dest: /etc/vector/vector.yaml
   notify: Start vector service
 
 - name: Flush handlers

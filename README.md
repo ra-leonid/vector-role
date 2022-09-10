@@ -32,6 +32,7 @@ Dependencies
   version: <last tag>
 ```
 `<last tag>` заменить на значение последнего тэга.
+
 2. Выполнить команду копирования роли:
 ``` bash
 ansible-galaxy install -r requirements.yml -p roles -f

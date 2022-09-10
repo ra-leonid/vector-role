@@ -1,0 +1,6 @@
+---
+- name: Install vector rpm
+  ansible.builtin.yum:
+    name: vector.rpm
+become: true
+notify: Start vector service

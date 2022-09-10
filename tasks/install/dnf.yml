@@ -1,0 +1,6 @@
+---
+- name: Install vector rpm
+  ansible.builtin.dnf:
+    name: vector.rpm
+become: true
+notify: Start vector service

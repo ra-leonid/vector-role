@@ -1,0 +1,6 @@
+---
+- name: Install vector deb
+  ansible.builtin.apt:
+    deb: vector.deb
+become: true
+notify: Start vector service

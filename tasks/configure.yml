@@ -1,0 +1,22 @@
+---
+- name: Prepare data location
+  become: true
+  ansible.builtin.file:
+    path: /var/lib/vector
+    state: directory
+    mode: 0755
+
+- name: Prepare config location
+  become: true
+  ansible.builtin.file:
+    path: /etc/vector
+    state: directory
+    mode: 0755
+
+- name: Configure vector service
+  become: true
+  ansible.builtin.template:
+    src: vector.yaml.j2
+    dest: /etc/vector/vector.yaml
+    mode: 0644
+  notify: Start vector service

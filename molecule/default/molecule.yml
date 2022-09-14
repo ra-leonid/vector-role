@@ -1,0 +1,67 @@
+---
+dependency:
+  name: galaxy
+  enabled: false
+driver:
+  name: docker
+platforms:
+  - name: centos7
+    image: docker.io/pycontribs/centos:7
+    pre_build_image: true
+    command: /sbin/init
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    #privileged: true
+  - name: centos8
+    image: docker.io/pycontribs/centos:8
+    pre_build_image: true
+    command: /sbin/init
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    #privileged: true
+  - name: ubuntu
+    image: docker.io/pycontribs/ubuntu:latest
+    pre_build_image: true
+    command: /sbin/init
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup
+provisioner:
+  name: ansible
+  #options:
+  #  vvv: true
+  #  D: true
+  #ansible_args:
+  #  - '-vvv'
+verifier:
+  name: ansible
+lint: |
+  yamllint .
+  ansible-lint .
+scenario:
+  test_sequence:
+  #- dependency                                                                                                                                                        
+  - lint                                                                                                                                                              
+  #- cleanup                                                                                                                                                           
+  - destroy                                                                                                                                                           
+  - syntax                                                                                                                                                            
+  - create                                                                                                                                                            
+  #- prepare                                                                                                                                                           
+  - converge                                                                                                                                                          
+  - idempotence                                                                                                                                                       
+  #- side_effect                                                                                                                                                       
+  - verify                                                                                                                                                            
+  #- cleanup                                                                                                                                                           
+  - destroy                                                                                                                                                           
+ 

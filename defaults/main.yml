@@ -1,5 +1,5 @@
 ---
-vector_version: 0.24.0
+vector_version: 0.21.1
 clickhouse_host_name: clickhouse-01
 clickhouse_user: logger
 clickhouse_password: logger

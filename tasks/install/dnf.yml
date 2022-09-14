@@ -1,6 +1,33 @@
 ---
+- name: Find repo files
+  ansible.builtin.find:
+    paths: /etc/yum.repos.d
+    file_type: file
+    patterns: 'CentOS-*'
+  register: repo_files
+
+- name: comment line 'mirrorlist=' in files
+  become: true
+  replace:
+    path: "{{ item.path }}"
+    regexp: '^mirrorlist='
+    replace: '#mirrorlist='
+  loop:
+    "{{ repo_files.files }}"
+
+- name: replace line '#baseurl' in files
+  become: true
+  replace:
+    path: "{{ item.path }}"
+    regexp: '#baseurl=http://mirror.centos.org'
+    replace: 'baseurl=http://vault.centos.org'
+  loop:
+    "{{ repo_files.files }}"
+
 - name: Install vector rpm
   become: true
   ansible.builtin.dnf:
-    name: vector.rpm
+    update_cache: true
+    disable_gpg_check: true
+    name: ./vector.rpm
   notify: Start vector service

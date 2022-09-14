@@ -5,13 +5,5 @@
 - name: Add install tasks
   include_tasks: install/{{ ansible_pkg_mgr }}.yml
 
-- name: Configure vector service
-  become: true
-  ansible.builtin.template:
-    src: vector.yaml.j2
-    dest: /etc/vector/vector.yaml
-    mode: 0644
-  notify: Start vector service
-
-- name: Flush handlers
-  ansible.builtin.meta: flush_handlers
+- name: Add configure tasks
+  include_tasks: configure.yml

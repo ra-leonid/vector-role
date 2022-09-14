@@ -1,0 +1,32 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: Example assertion
+    assert:
+      that: true
+  - name: 'Gather Installed Packages'
+    ansible.builtin.package_facts:
+      manager: auto
+    become: true
+  - name: 'Gather Local Services'
+    ansible.builtin.service_facts:
+    become: true
+  - name: 'Assert Vector Packages'
+    ansible.builtin.assert:
+      that:
+        - "'vector' in ansible_facts.packages"
+  - name: 'Assert Vector Service'
+    ansible.builtin.assert:
+      that:
+        - "'vector.service' in ansible_facts.services"
+        - "'running' == ansible_facts.services['vector.service'].state"
+        - "'enabled' == ansible_facts.services['vector.service'].status"
+  - name: Check that the vector.yaml exists
+    ansible.builtin.stat:
+      path: /etc/vector/vector.yaml
+    register: config_files
+  - name: 'Assert Vector Config Files Stats'
+    ansible.builtin.assert:
+      that: config_files.stat.exists

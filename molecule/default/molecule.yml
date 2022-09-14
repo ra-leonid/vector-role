@@ -25,18 +25,6 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     #privileged: true
-  - name: ubuntu
-    image: docker.io/pycontribs/ubuntu:latest
-    pre_build_image: true
-    command: /sbin/init
-    privileged: true
-    capabilities:
-      - SYS_ADMIN
-    tmpfs:
-      - /run
-      - /tmp
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup
 provisioner:
   name: ansible
   #options:

@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: vector_role
+  role_name: "vector-role"
   namespace: vector_namespace
   author: Leonid Rastorguev
   description: devops
@@ -19,7 +19,7 @@ galaxy_info:
   # - CC-BY-4.0
   license: MIT
 
-  min_ansible_version: 2.1
+  min_ansible_version: '2.1'
 
   # If this a Container Enabled role, provide the minimum Ansible Container version.
   # min_ansible_container_version:

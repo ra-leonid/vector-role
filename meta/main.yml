@@ -1,5 +1,7 @@
+---
 galaxy_info:
-  role_name: vector-role
+  role_name: vector_role
+  namespace: vector_namespace
   author: Leonid Rastorguev
   description: devops
   company: my_company

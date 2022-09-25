@@ -6,7 +6,7 @@
     patterns: 'CentOS-*'
   register: repo_files
 
-- name: "comment line 'mirrorlist=' in files"
+- name: Comment line 'mirrorlist=' in files
   become: true
   replace:
     path: "{{ item.path }}"
@@ -15,7 +15,7 @@
   loop:
     "{{ repo_files.files }}"
 
-- name: "replace line '#baseurl' in files"
+- name: Replace line '#baseurl' in files
   become: true
   replace:
     path: "{{ item.path }}"
